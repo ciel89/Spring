@@ -1,0 +1,111 @@
+package com.example.product.controller;
+
+import com.example.product.domain.Product;
+import com.example.product.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/products")
+public class ProductController {
+
+    private final ProductRepository productRepository;
+
+    @Value("${upload.path}")
+    private String uploadPath;
+
+    public ProductController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    // ✅ 상품 등록
+    @PostMapping
+    public Product createProduct(
+            @RequestParam("name") String name,
+            @RequestParam("description") String description,
+            @RequestParam("price") int price,
+            @RequestParam("image") MultipartFile image) throws IOException {
+
+        File uploadDir = new File(uploadPath).getAbsoluteFile();
+        if (!uploadDir.exists()) uploadDir.mkdirs();
+
+        String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
+        File dest = new File(uploadDir, fileName);
+        image.transferTo(dest);
+
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(description);
+        product.setPrice(price);
+        product.setImagePath("/images/" + fileName);
+
+        return productRepository.save(product); // JSON으로 자동 응답
+    }
+
+    // ✅ 전체 상품 목록 조회
+    @GetMapping
+    public List<Product> list() {
+        return productRepository.findAll();
+    }
+
+    // ✅ 상품 상세 조회
+    @GetMapping("/{id}")
+    public Product get(@PathVariable Long id) {
+        return productRepository.findById(id).orElse(null); // null 반환 시 500 오류 발생 가능
+    }
+
+    // ✅ 상품 수정
+    @PutMapping("/{id}")
+    public Product updateProduct(
+            @PathVariable Long id,
+            @RequestParam("name") String name,
+            @RequestParam("description") String description,
+            @RequestParam("price") int price,
+            @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
+
+        Optional<Product> optional = productRepository.findById(id);
+        if (optional.isEmpty()) return null;
+
+        Product product = optional.get();
+        product.setName(name);
+        product.setDescription(description);
+        product.setPrice(price);
+
+        if (image != null && !image.isEmpty()) {
+            if (product.getImagePath() != null) {
+                File oldFile = new File(new File(uploadPath), product.getImagePath().replace("/images/", ""));
+                if (oldFile.exists()) oldFile.delete();
+            }
+
+            String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
+            File dest = new File(new File(uploadPath).getAbsoluteFile(), fileName);
+            image.transferTo(dest);
+            product.setImagePath("/images/" + fileName);
+        }
+
+        return productRepository.save(product);
+    }
+
+    // ✅ 상품 삭제
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        Optional<Product> optional = productRepository.findById(id);
+        if (optional.isEmpty()) return;
+
+        Product product = optional.get();
+
+        if (product.getImagePath() != null) {
+            File imageFile = new File(new File(uploadPath), product.getImagePath().replace("/images/", ""));
+            if (imageFile.exists()) imageFile.delete();
+        }
+
+        productRepository.deleteById(id);
+    }
+}
