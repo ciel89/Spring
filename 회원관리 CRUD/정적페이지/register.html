@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원 등록</title>
+</head>
+<body>
+  <h2>회원 등록</h2>
+  <form id="registerForm">
+    이름: <input type="text" id="name"><br>
+    이메일: <input type="email" id="email"><br>
+    비밀번호: <input type="password" id="password"><br>
+    <button type="submit">등록</button>
+  </form>
+
+  <script>
+    // 폼이 제출되었을 때 이벤트 리스너 등록
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // 기본 폼 전송(페이지 새로고침) 방지
+
+      // fetch()를 이용해 POST 방식으로 서버에 데이터 전송
+      fetch('http://localhost:8082/members', {  // Spring Boot 백엔드 주소
+        method: 'POST',  // HTTP 메서드: POST (등록용)
+        headers: {
+          'Content-Type': 'application/json'  // 전송 데이터 형식: JSON
+        },
+        body: JSON.stringify({  // 입력값들을 JSON 문자열로 변환해서 전송
+          name: document.getElementById('name').value,       // 이름 필드 값
+          email: document.getElementById('email').value,     // 이메일 필드 값
+          password: document.getElementById('password').value // 비밀번호 필드 값
+        })
+      })
+      // 서버 응답을 JSON으로 파싱
+      .then(res => res.json())
+      // 성공 시 사용자에게 알림창으로 응답 내용 출력
+      .then(data => alert('등록 완료: ' + JSON.stringify(data)))
+      // 에러 발생 시 에러 메시지 출력
+      .catch(err => alert('에러: ' + err));
+    });
+  </script>
+</body>
+</html>

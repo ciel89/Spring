@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원 수정</title>
+</head>
+<body>
+  <h2>회원 수정</h2>
+  <form id="editForm">
+    회원 ID: <input type="number" id="id"><br>
+    이름: <input type="text" id="name"><br>
+    이메일: <input type="email" id="email"><br>
+    비밀번호: <input type="password" id="password"><br>
+    <button type="submit">수정</button>
+  </form>
+
+  <script>
+    // ID가 'editForm'인 폼이 제출될 때 이벤트 리스너 등록
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // 기본 폼 전송(페이지 새로고침) 동작 방지
+  
+      // 수정할 회원의 ID 가져오기
+      const id = document.getElementById('id').value;
+  
+      // fetch API를 사용해 PUT 요청 전송 (회원 정보 수정)
+      fetch(`http://localhost:8082/members/${id}`, {  // 백엔드 수정 엔드포인트 URL
+        method: 'PUT', // HTTP 메서드: PUT (자원 전체 수정용)
+        headers: {
+          'Content-Type': 'application/json' // 요청 본문 형식이 JSON임을 명시
+        },
+        body: JSON.stringify({ // 입력 필드 값을 JSON 문자열로 변환
+          name: document.getElementById('name').value,        // 수정할 이름
+          email: document.getElementById('email').value,      // 수정할 이메일
+          password: document.getElementById('password').value // 수정할 비밀번호
+        })
+      })
+      // 서버 응답(JSON)을 받아서 파싱
+      .then(res => res.json())
+      // 수정 성공 시 알림창으로 결과 표시
+      .then(data => alert('수정 완료: ' + JSON.stringify(data)))
+      // 에러 발생 시 알림창으로 에러 메시지 출력
+      .catch(err => alert('에러: ' + err));
+    });
+  </script>
+  
+</body>
+</html>
