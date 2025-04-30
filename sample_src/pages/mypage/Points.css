@@ -1,0 +1,31 @@
+.points-wrapper {
+    padding: 20px;
+  }
+  
+  .point-total {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  
+  .point-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .point-table th,
+  .point-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .point-table .plus {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .point-table .minus {
+    color: red;
+    font-weight: bold;
+  }
+  

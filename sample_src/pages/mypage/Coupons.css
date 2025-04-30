@@ -1,0 +1,26 @@
+/* src/pages/mypage/Coupons.css */
+
+.coupon-wrapper {
+    padding: 20px;
+  }
+  
+  .coupon-wrapper h3 {
+    margin-bottom: 16px;
+  }
+  
+  .coupon-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .coupon-table th,
+  .coupon-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .coupon-table th {
+    background-color: #f4f4f4;
+  }
+  

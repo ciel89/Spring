@@ -1,0 +1,38 @@
+.address-wrapper {
+    padding: 20px;
+  }
+  
+  .address-add {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .address-add input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .address-add button {
+    padding: 10px 16px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .address-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .address-list li {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+  }
+  

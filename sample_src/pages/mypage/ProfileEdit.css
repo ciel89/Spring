@@ -1,0 +1,42 @@
+.profile-wrapper {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .profile-wrapper h3 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .profile-form label {
+    font-weight: bold;
+  }
+  
+  .profile-form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .profile-form button {
+    margin-top: 12px;
+    padding: 12px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .profile-form button:hover {
+    background-color: #444;
+  }
+  

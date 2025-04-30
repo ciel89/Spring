@@ -1,0 +1,42 @@
+/* src/pages/support/Inquiry.css */
+
+.inquiry-wrapper {
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .inquiry-wrapper h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 26px;
+  }
+  
+  .inquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .inquiry-form input,
+  .inquiry-form textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  .inquiry-form button {
+    background-color: black;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .inquiry-form button:hover {
+    background-color: #333;
+  }
+  
