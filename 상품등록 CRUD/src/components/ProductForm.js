@@ -1,64 +1,70 @@
-
 import React from "react";
+import "../css/ProductForm.css"; // 👈 CSS 파일 추가
 
 function ProductForm({ form, onChange, onImageChange, onSubmit, imagePreview, isEdit = false }) {
   return (
-    // multipart/form-data: 파일 업로드를 위해 반드시 필요한 설정
-    <form onSubmit={onSubmit} encType="multipart/form-data">
+    <form onSubmit={onSubmit} encType="multipart/form-data" className="form-container">
 
-      상품명:
-      <input 
-        name="name" 
-        value={form.name} 
-        onChange={onChange} 
-      />
-      <br />
-
-      상품설명:
-      <input 
-        name="description" 
-        value={form.description} 
-        onChange={onChange} 
-      />
-      <br />
-
-      상품가격:
-      <input 
-        name="price" 
-        type="number" 
-        value={form.price} 
-        onChange={onChange} 
-      />
-      <br />
-
-      상품이미지:
-      <input 
-        type="file" 
-        name="image"
-        accept="image/*" // 이미지 파일만 선택 가능하도록 제한
-        onChange={onImageChange} 
-      />
-      <br />
-
-      {/* 이미지 미리보기: 사용자가 이미지를 선택했을 때 화면에 보여줌 */}
-      {imagePreview && (
-        <img 
-          src={imagePreview} 
-          alt="미리보기" 
-          width="200" 
-          style={{ marginTop: "10px" }} 
+      <div className="form-group">
+        <label htmlFor="name">상품명:</label>
+        <input 
+          id="name"
+          name="name" 
+          value={form.name} 
+          onChange={onChange} 
+          type="text"
         />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="description">상품설명:</label>
+        <input 
+          id="description"
+          name="description" 
+          value={form.description} 
+          onChange={onChange} 
+          type="text"
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="price">상품가격:</label>
+        <input 
+          id="price"
+          name="price" 
+          type="number" 
+          value={form.price} 
+          onChange={onChange} 
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="image">상품이미지:</label>
+        <input 
+          id="image"
+          type="file" 
+          name="image"
+          accept="image/*"
+          onChange={onImageChange} 
+        />
+      </div>
+
+      {imagePreview && (
+        <div className="form-preview">
+          <img 
+            src={imagePreview} 
+            alt="미리보기" 
+          />
+        </div>
       )}
 
-      <br />
-
-      {/* 제출 버튼 (수정 모드 또는 등록 모드에 따라 텍스트 변경) */}
-      <button type="submit">
-        {isEdit ? "수정" : "등록"}
-      </button>
+      <div className="form-submit">
+        <button type="submit">
+          {isEdit ? "수정" : "등록"}
+        </button>
+      </div>
     </form>
   );
 }
 
-// 외부에서 이 컴포넌트를 사용할 수 있도록 export
 export default ProductForm;

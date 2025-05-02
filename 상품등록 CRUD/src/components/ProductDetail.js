@@ -26,7 +26,7 @@ function ProductDetail() {
           price,
           image: null, 
         });
-        setImagePreview(`http://localhost:8082${imagePath}`);
+        setImagePreview(`http://3.39.144.111:8082${imagePath}`);
       })
       .catch(() => navigate("/")); // 오류 시 홈으로 이동
   }, [id, navigate]);

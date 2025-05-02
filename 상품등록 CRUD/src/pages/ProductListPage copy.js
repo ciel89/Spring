@@ -14,11 +14,9 @@ function ProductListPage(){
     return(
         <div className="product-list">
             <h2>상품 목록</h2>
-            <div className="product-grid">
-                {products.map(product => 
-                    <ProductItem key={product.id} product={product}/>
-                )}
-            </div>  
+            {products.map(product => 
+                <ProductItem key={product.id} product={product}/>
+            )}
             
         </div>
     );
