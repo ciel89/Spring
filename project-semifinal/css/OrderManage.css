@@ -1,0 +1,18 @@
+.admin-order-manage {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+.admin-order-manage table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+.admin-order-manage th,
+.admin-order-manage td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+.admin-order-manage th {
+    background: #f5f5f5;
+  }  

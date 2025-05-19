@@ -1,0 +1,24 @@
+.guide-wrapper {
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+.guide-wrapper h2 {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 28px;
+    color: #222;
+  }
+.guide-wrapper section {
+    margin-bottom: 32px;
+  }
+.guide-wrapper h3 {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 8px;
+  }  
+.guide-wrapper p {
+    font-size: 16px;
+    color: #555;
+  }  

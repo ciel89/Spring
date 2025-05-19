@@ -1,0 +1,45 @@
+.coupon-wrapper {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+.coupon-tab {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.coupon-tab button {
+  padding: 10px 20px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  font-weight: bold;
+}
+.coupon-tab .active {
+  background: #333;
+  color: white;
+}
+.coupon-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.coupon-table th,
+.coupon-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+.owned {
+  color: green;
+  font-weight: bold;
+}
+.coupon-item.used {
+  opacity: 0.5;
+  background-color: #f2f2f2;
+}
+
+.coupon-item .status {
+  font-weight: bold;
+  color: #999;
+}

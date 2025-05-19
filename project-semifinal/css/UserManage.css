@@ -1,0 +1,18 @@
+.admin-user-manage {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+.admin-user-manage table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+.admin-user-manage th,
+.admin-user-manage td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+.admin-user-manage th {
+    background: #f5f5f5;
+  }  

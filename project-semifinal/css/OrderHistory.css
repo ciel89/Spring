@@ -1,0 +1,50 @@
+.order-history {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+.order-history h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
+  }
+.order-history table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+.order-history th,
+.order-history td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+.order-history th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+.order-history button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s ease;
+  }
+.order-history button:hover {
+    background-color: #45a049;
+  }
+.order-history button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+.order-history p {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 14px;
+  }  

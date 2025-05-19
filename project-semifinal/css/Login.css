@@ -1,0 +1,32 @@
+.login-wrapper {
+    padding: 40px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+.login-wrapper h2 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+.login-form input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+.login-form button {
+    padding: 14px;
+    font-size: 16px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+.login-form button:hover {
+    background-color: #333;
+  }

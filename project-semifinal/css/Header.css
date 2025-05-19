@@ -1,0 +1,42 @@
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+  }
+.logo a {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  } 
+.nav-menu a {
+    margin-left: 16px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+  }  
+.nav-menu a:hover {
+    color: #ff6600;
+  }  
+.logout-button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+  text-decoration: none;
+  display: inline; 
+}
+.logout-button:hover {
+  color: #ff6600; 
+}
+.cart-icon {
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 12px;
+}

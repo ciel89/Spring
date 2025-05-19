@@ -1,0 +1,40 @@
+.inquiry-list-wrapper {
+    padding: 20px;
+  }
+.inquiry-list {
+    list-style: none;
+    padding: 0;
+  }
+.inquiry-list li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+.inquiry-title {
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+.inquiry-title span {
+    font-size: 12px;
+    color: #999;
+  }
+.inquiry-content {
+    margin-top: 8px;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    color: #444;
+  }
+.inquiry-reply {
+  margin-top: 10px;
+  padding: 10px;
+  background: #f4f4f4;
+  border-left: 4px solid #555;
+}
+.no-reply {
+  margin-top: 10px;
+  color: #999;
+  font-style: italic;
+}

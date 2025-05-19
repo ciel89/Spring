@@ -1,0 +1,40 @@
+.review-page {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 20px;
+}
+.review-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.review-tabs button {
+  padding: 10px 20px;
+  font-weight: bold;
+  border: none;
+  background-color: #eee;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.review-tabs button.active {
+  background-color: #222;
+  color: #fff;
+}
+.review-write table,
+.review-mylist table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+.review-write th,
+.review-write td,
+.review-mylist th,
+.review-mylist td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+textarea {
+  width: 100%;
+  resize: none;
+}

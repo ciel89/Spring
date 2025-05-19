@@ -1,0 +1,56 @@
+.register-wrapper {
+    padding: 40px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+.register-wrapper h2 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+.register-form input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+.register-form button {
+    padding: 14px;
+    font-size: 16px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+.register-form button:hover {
+    background-color: #333;
+  }
+.username-row {
+    display: flex;
+    gap: 8px;
+  }
+.username-row input {
+    flex: 1;
+  }
+.username-row button {
+    padding: 12px 16px;
+    background: #ddd;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: -8px;
+  }
+.success {
+    color: green;
+    font-size: 14px;
+    margin-top: -8px;
+  }  

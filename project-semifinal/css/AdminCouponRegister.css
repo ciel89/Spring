@@ -1,0 +1,45 @@
+.coupon-register-wrapper {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.coupon-register-wrapper h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+.coupon-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.coupon-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+.coupon-form input,
+.coupon-form select {
+  padding: 8px;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+.checkbox-label {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.coupon-form button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.coupon-form button:hover {
+  background-color: #388e3c;
+}
