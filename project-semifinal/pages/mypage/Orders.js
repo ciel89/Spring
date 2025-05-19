@@ -14,6 +14,10 @@ export default function Orders() {
   const [discount, setDiscount] = useState(0);
   const [averageRating, setAverageRating] = useState(null);
 
+  const [points, setPoints] = useState(0); // 보유 포인트
+  const [usedPoints, setUsedPoints] = useState(0); // 사용 포인트
+
+
   useEffect(() => {
     api.get(`/products/${id}`)
       .then((res) => setProduct(res.data))
@@ -26,6 +30,11 @@ export default function Orders() {
       console.log("내 쿠폰 목록:", res.data); 
       setCoupons(res.data);
     });
+    api.get('/users/me', { withCredentials: true })
+    .then(res => {
+      setPoints(res.data.point || 0); // 보유 포인트
+    })
+    .catch(() => setPoints(0));
   }, [id]);
 
 const handleOrder = () => {
@@ -38,10 +47,10 @@ const handleOrder = () => {
   const orderData = {
     productId: product.id,
     quantity: quantity,
+    usedPoints: usedPoints
   };
 
-  // ✅ 선택한 쿠폰이 있으면 포함
-  if (selectedCouponId) {
+ if (selectedCouponId) {
     orderData.couponId = selectedCouponId;
   }
 
@@ -79,51 +88,77 @@ const handleAddToCart = () => {
 
   return (
     <div className="modal-overlay">
-      <div className="order-modal">
-        <h3>주문하기</h3>
-        <img src={`http://localhost:8080${product.imagePath}`} alt={product.name} />
-        <p>{product.name}</p>
-        <p>{product.price.toLocaleString()}원</p>
-        <p>{product.description}</p>
-
-        {averageRating !== null && (
-          <p>평균 별점: {'⭐'.repeat(Math.round(averageRating))} ({averageRating.toFixed(1)})</p>
-        )}
-        <div className="quantity-control">
-          <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
-          <span>{quantity}</span>
-          <button onClick={() => setQuantity(quantity + 1)}>+</button>
+    <div className="order-modal">
+      <h3>주문하기</h3>
+      <div className="order-content">
+        {/* 왼쪽: 이미지 + 기본정보 */}
+        <div className="order-left">
+          <img src={`http://localhost:8080${product.imagePath}`} alt={product.name} />
+          <p className="product-name">{product.name}</p>
+          <p className="product-price">{product.price.toLocaleString()}원</p>
         </div>
 
-        <div className="coupon-select">
-          <label>쿠폰 선택: </label>
-          <select
-            onChange={(e) => {
-              const selected = coupons.find(c => c.id === parseInt(e.target.value));
-              setSelectedCouponId(selected?.id || null);
-              setDiscount(selected?.template?.discount || 0); 
-            }}
-          >
-            <option value="">-- 쿠폰 선택 안함 --</option>
-            {coupons
-            .filter(c => !c.used) 
-            .map(c => (
-              <option key={c.id} value={c.id}>
-                {c.template?.title} ({c.template?.discount.toLocaleString()}원 할인)
-              </option>
-            ))}
-          </select>
-        </div>
+        {/* 오른쪽: 설명 + 리뷰평균 + 쿠폰/적립금 + 총가격 */}
+        <div className="order-right">
+          <p className="product-description">{product.description}</p>
 
+          {averageRating !== null && (
+            <p className="product-rating">
+              평균 별점: {'⭐'.repeat(Math.round(averageRating))} ({averageRating.toFixed(1)})
+            </p>
+          )}
 
-        <p>총 가격: {(product.price * quantity - discount).toLocaleString()}원</p>
+          <div className="quantity-control">
+            <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
+            <span>{quantity}</span>
+            <button onClick={() => setQuantity(quantity + 1)}>+</button>
+          </div>
 
-        <div className="modal-actions">
-          <button onClick={() => navigate(-1)}>취소</button>
-          <button onClick={handleAddToCart}>🛒 장바구니</button>
-          <button className="submit" onClick={handleOrder}>주문하기</button>
+          <div className="coupon-select">
+            <label>쿠폰 선택: </label>
+            <select
+              onChange={(e) => {
+                const selected = coupons.find(c => c.id === parseInt(e.target.value));
+                setSelectedCouponId(selected?.id || null);
+                setDiscount(selected?.template?.discount || 0);
+              }}
+            >
+              <option value="">-- 쿠폰 선택 안함 --</option>
+              {coupons.filter(c => !c.used).map(c => (
+                <option key={c.id} value={c.id}>
+                  {c.template?.title} ({c.template?.discount.toLocaleString()}원 할인)
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="point-input">
+            <label>보유 적립금: {points.toLocaleString()}원</label><br />
+            <input
+              type="number"
+              value={usedPoints}
+              onChange={(e) => {
+                const value = Math.max(0, Math.min(points, Number(e.target.value)));
+                setUsedPoints(value);
+              }}
+              placeholder="사용할 적립금 입력"
+            />
+          </div>
+
+          <p className="total-price">
+            총 가격: {(product.price * quantity - discount - usedPoints).toLocaleString()}원
+          </p>
         </div>
       </div>
+
+      {/* 하단 버튼 중앙 정렬 */}
+      <div className="modal-actions center">
+        <button onClick={() => navigate(-1)}>취소</button>
+        <button onClick={handleAddToCart}>🛒 장바구니</button>
+        <button className="submit" onClick={handleOrder}>주문하기</button>
+      </div>
+    </div>
+
     </div>
   );
 }
