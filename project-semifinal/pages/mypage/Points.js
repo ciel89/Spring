@@ -34,7 +34,7 @@ export default function Points() {
         <tbody>
           {history.map((item) => (
             <tr key={item.id}>
-              <td>{item.date}</td>
+              <td>{item.date?.replace('T', ' ').substring(0, 16)}</td>
               <td>{item.description}</td>
               <td>{item.type}</td>
               <td className={item.amount >= 0 ? 'plus' : 'minus'}>
